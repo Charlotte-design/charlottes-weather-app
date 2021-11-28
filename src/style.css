@@ -1,0 +1,174 @@
+body {
+  background-image: url(images/weatherbackground.jpg);
+}
+
+h1,
+h2 {
+  font-family: "Josefin Sans", sans-serif;
+  color: #b9dbe6;
+  text-align: center;
+}
+
+h1 {
+  font-size: 50px;
+}
+
+h2 {
+  font-size: 40px;
+}
+
+p {
+  text-align: center;
+  font-family: "Raleway", sans-serif;
+}
+
+form {
+  margin: -200px 0 0;
+}
+
+.toprow {
+  margin: 80px 20px;
+  text-align: center;
+}
+
+.first,
+.second,
+.third,
+.fourth,
+.fifth {
+  padding: 20px;
+  border: solid #5f818a;
+  border-radius: 30% 40%;
+  margin: 5px;
+  font-family: "Raleway", sans-serif;
+  font-weight: 900;
+  background-color: #5f818a;
+  color: #b9dbe6;
+}
+
+.fivedaysahead span {
+  font-size: 20px;
+}
+
+.fivedaysahead .fas {
+  font-size: 40px;
+}
+
+.description {
+  text-transform: capitalize;
+}
+
+.date,
+.time {
+  font-size: 18px;
+}
+
+.todaydescription1 {
+  margin: 100px 20px 50px;
+}
+
+.temp-now {
+  position: relative;
+  left: 35px;
+}
+
+.degree {
+  position: relative;
+  left: 35px;
+}
+
+.celsius {
+  font-size: 20px;
+  text-decoration: none;
+  color: #b9dbe6;
+  position: relative;
+  bottom: 30px;
+  left: 25px;
+}
+
+.fahrenheit {
+  font-size: 20px;
+  text-decoration: none;
+  color: #b9dbe6;
+  position: relative;
+  bottom: 30px;
+  left: 25px;
+}
+
+.maximum,
+.minimum {
+  font-size: 20px;
+}
+
+.todaydescription2 {
+  margin: 200px 20px;
+  font-weight: 900;
+  font-size: 20px;
+  color: #304852;
+}
+
+.description {
+  margin: -40px 0;
+  font-size: 20px;
+  font-weight: 900;
+  color: #304852;
+  font-family: "Raleway", sans-serif;
+}
+
+.fa-cloud {
+  font-size: 200px;
+  margin: 50px 0 0;
+  background: -webkit-linear-gradient(#eee, #304852);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.fa-bolt {
+  color: #d7df71;
+}
+
+.fa-cloud-rain {
+  background: -webkit-linear-gradient(#9ba6a5, #1c44ac);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.fa-cloud-sun {
+  background: -webkit-linear-gradient(yellow, #d9dad7);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.fa-sun {
+  background: -webkit-linear-gradient(#f89d13, #ffdd00);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.searchfield {
+  display: block;
+  margin: 5px auto 0;
+  padding: 5px 100px;
+  text-align: center;
+}
+
+.searchbutton {
+  display: block;
+  text-align: right;
+
+  background-color: #e7eaf6;
+  border: solid #e7eaf6;
+  font-family: "Raleway", sans-serif;
+}
+
+.currentbutton {
+  display: block;
+  margin: 0 auto;
+  background-color: #e7eaf6;
+  border: solid #e7eaf6;
+  font-family: "Raleway", sans-serif;
+}
