@@ -58,6 +58,34 @@ function returnTime(time) {
   return formattedTime;
 }
 
+function displayDefaultWeather(response) {
+  let defaultCityName = response.data.name;
+  let defaultTemp = Math.round(response.data.main.temp);
+  let defaultMax = Math.round(response.data.main.temp_max);
+  let defaultMin = Math.round(response.data.main.temp_min);
+  let defaultFeelsLike = Math.round(response.data.main.feels_like);
+  let defaultHumidity = Math.round(response.data.main.humidity);
+  let defaultWindSpeed = Math.round(response.data.wind.speed);
+  let defaultDescrip = response.data.weather[0].description;
+
+  let citySearch = document.querySelector("#this-city");
+  citySearch.innerHTML = defaultCityName;
+  let descriptionSearch = document.querySelector("#description");
+  descriptionSearch.innerHTML = defaultDescrip;
+  let temperatureSearch = document.querySelector("#temp-now");
+  temperatureSearch.innerHTML = defaultTemp;
+  let maxSearch = document.querySelector("#maximum");
+  maxSearch.innerHTML = defaultMax;
+  let minSearch = document.querySelector("#minimum");
+  minSearch.innerHTML = defaultMin;
+  let feelsLikeSearch = document.querySelector("#feels-like");
+  feelsLikeSearch.innerHTML = defaultFeelsLike;
+  let humidSearch = document.querySelector("#humid");
+  humidSearch.innerHTML = defaultHumidity;
+  let windSearch = document.querySelector("#wind-spd");
+  windSearch.innerHTML = defaultWindSpeed;
+}
+
 function displaySearchWeather(response) {
   let cityName = response.data.name;
   let temp = Math.round(response.data.main.temp);
@@ -144,6 +172,10 @@ date.innerHTML = returnDate(currentDate);
 let currentTime = new Date();
 let time = document.querySelector("#time");
 time.innerHTML = returnTime(currentTime);
+
+let apiKey = "2851d65c3b3f1b70b16c7dcfea44e109";
+let url = `https://api.openweathermap.org/data/2.5/weather?q=York&appid=${apiKey}&units=metric`;
+axios.get(url).then(displayDefaultWeather);
 
 let input = document.querySelector("#city-search");
 input.addEventListener("submit", searchLocation);
