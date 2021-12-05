@@ -69,22 +69,28 @@ function displayDefaultWeather(response) {
   let defaultWindSpeed = Math.round(response.data.wind.speed);
   let defaultDescrip = response.data.weather[0].description;
 
-  let citySearch = document.querySelector("#this-city");
-  citySearch.innerHTML = defaultCityName;
-  let descriptionSearch = document.querySelector("#description");
-  descriptionSearch.innerHTML = defaultDescrip;
-  let temperatureSearch = document.querySelector("#temp-now");
-  temperatureSearch.innerHTML = defaultTemp;
-  let maxSearch = document.querySelector("#maximum");
-  maxSearch.innerHTML = defaultMax;
-  let minSearch = document.querySelector("#minimum");
-  minSearch.innerHTML = defaultMin;
-  let feelsLikeSearch = document.querySelector("#feels-like");
-  feelsLikeSearch.innerHTML = defaultFeelsLike;
-  let humidSearch = document.querySelector("#humid");
-  humidSearch.innerHTML = defaultHumidity;
-  let windSearch = document.querySelector("#wind-spd");
-  windSearch.innerHTML = defaultWindSpeed;
+  let cityDefault = document.querySelector("#this-city");
+  cityDefault.innerHTML = defaultCityName;
+  let descriptionDefault = document.querySelector("#description");
+  descriptionDefault.innerHTML = defaultDescrip;
+  let temperatureDefault = document.querySelector("#temp-now");
+  temperatureDefault.innerHTML = defaultTemp;
+  let maxDefault = document.querySelector("#maximum");
+  maxDefault.innerHTML = defaultMax;
+  let minDefault = document.querySelector("#minimum");
+  minDefault.innerHTML = defaultMin;
+  let feelsLikeDefault = document.querySelector("#feels-like");
+  feelsLikeDefault.innerHTML = defaultFeelsLike;
+  let humidDefault = document.querySelector("#humid");
+  humidDefault.innerHTML = defaultHumidity;
+  let windDefault = document.querySelector("#wind-spd");
+  windDefault.innerHTML = defaultWindSpeed;
+  let iconDefault = document.querySelector("#icon");
+  iconDefault.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${iconDefault}@2x.png`
+  );
+  iconDefault.setAttribute("alt", response.data.weather[0].icon);
 }
 
 function displaySearchWeather(response) {
