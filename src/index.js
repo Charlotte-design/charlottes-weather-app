@@ -59,6 +59,7 @@ function returnTime(time) {
 }
 
 function displayDefaultWeather(response) {
+  console.log(response.data);
   let defaultCityName = response.data.name;
   let defaultTemp = Math.round(response.data.main.temp);
   let defaultMax = Math.round(response.data.main.temp_max);
