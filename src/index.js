@@ -59,7 +59,6 @@ function returnTime(time) {
 }
 
 function displayDefaultWeather(response) {
-  console.log(response.data);
   let defaultCityName = response.data.name;
   let defaultTemp = Math.round(response.data.main.temp);
   let defaultMax = Math.round(response.data.main.temp_max);
@@ -68,6 +67,7 @@ function displayDefaultWeather(response) {
   let defaultHumidity = Math.round(response.data.main.humidity);
   let defaultWindSpeed = Math.round(response.data.wind.speed);
   let defaultDescrip = response.data.weather[0].description;
+  let defaultIcon = response.data.weather[0].icon;
 
   let cityDefault = document.querySelector("#this-city");
   cityDefault.innerHTML = defaultCityName;
@@ -88,7 +88,7 @@ function displayDefaultWeather(response) {
   let iconDefault = document.querySelector("#icon");
   iconDefault.setAttribute(
     "src",
-    `http://openweathermap.org/img/wn/${iconDefault}@2x.png`
+    `http://openweathermap.org/img/wn/${defaultIcon}@2x.png`
   );
   iconDefault.setAttribute("alt", response.data.weather[0].icon);
 }
@@ -102,6 +102,7 @@ function displaySearchWeather(response) {
   let humidity = Math.round(response.data.main.humidity);
   let windSpeed = Math.round(response.data.wind.speed);
   let descrip = response.data.weather[0].description;
+  let icon = response.data.weather[0].icon;
 
   let citySearch = document.querySelector("#this-city");
   citySearch.innerHTML = cityName;
@@ -119,6 +120,12 @@ function displaySearchWeather(response) {
   humidSearch.innerHTML = humidity;
   let windSearch = document.querySelector("#wind-spd");
   windSearch.innerHTML = windSpeed;
+  let iconSearch = document.querySelector("#icon");
+  iconSearch.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${icon}@2x.png`
+  );
+  iconSearch.setAttribute("alt", response.data.weather[0].icon);
 }
 
 function searchLocation(event) {
@@ -139,6 +146,7 @@ function displayCurrentWeather(response) {
   let humidity1 = Math.round(response.data.main.humidity);
   let windSpeed1 = Math.round(response.data.wind.speed);
   let descrip1 = response.data.weather[0].description;
+  let icon1 = response.data.weather[0].icon;
 
   let cityHere = document.querySelector("#this-city");
   cityHere.innerHTML = cityName1;
@@ -156,6 +164,12 @@ function displayCurrentWeather(response) {
   humidHere.innerHTML = humidity1;
   let windHere = document.querySelector("#wind-spd");
   windHere.innerHTML = windSpeed1;
+  let iconHere = document.querySelector("#icon");
+  iconHere.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${icon1}@2x.png`
+  );
+  iconHere.setAttribute("alt", response.data.weather[0].icon);
 }
 
 function logPosition(position) {

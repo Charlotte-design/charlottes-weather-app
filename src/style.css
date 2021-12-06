@@ -115,13 +115,8 @@ form {
   font-family: "Raleway", sans-serif;
 }
 
-.fa-cloud {
-  font-size: 200px;
+.today-icon {
   margin: 50px 0 0;
-  background: -webkit-linear-gradient(#eee, #304852);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
 }
 
 .fa-bolt {
