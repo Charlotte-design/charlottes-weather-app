@@ -138,36 +138,36 @@ function searchLocation(event) {
 }
 
 function displayCurrentWeather(response) {
-  let cityName1 = response.data.name;
-  let temp1 = Math.round(response.data.main.temp);
-  let max1 = Math.round(response.data.main.temp_max);
-  let min1 = Math.round(response.data.main.temp_min);
-  let feelsLike1 = Math.round(response.data.main.feels_like);
-  let humidity1 = Math.round(response.data.main.humidity);
-  let windSpeed1 = Math.round(response.data.wind.speed);
-  let descrip1 = response.data.weather[0].description;
-  let icon1 = response.data.weather[0].icon;
+  let hereCityName = response.data.name;
+  let hereTemp = Math.round(response.data.main.temp);
+  let hereMax = Math.round(response.data.main.temp_max);
+  let hereMin = Math.round(response.data.main.temp_min);
+  let hereFeelsLike = Math.round(response.data.main.feels_like);
+  let hereHumidity = Math.round(response.data.main.humidity);
+  let hereWindSpeed = Math.round(response.data.wind.speed);
+  let hereDescrip = response.data.weather[0].description;
+  let hereIcon = response.data.weather[0].icon;
 
   let cityHere = document.querySelector("#this-city");
-  cityHere.innerHTML = cityName1;
+  cityHere.innerHTML = hereCityName;
   let description = document.querySelector("#description");
-  description.innerHTML = descrip1;
+  description.innerHTML = hereDescrip;
   let temperatureHere = document.querySelector("#temp-now");
-  temperatureHere.innerHTML = temp1;
+  temperatureHere.innerHTML = hereTemp;
   let maxHere = document.querySelector("#maximum");
-  maxHere.innerHTML = max1;
+  maxHere.innerHTML = hereMax;
   let minHere = document.querySelector("#minimum");
-  minHere.innerHTML = min1;
+  minHere.innerHTML = hereMin;
   let feelsLikeHere = document.querySelector("#feels-like");
-  feelsLikeHere.innerHTML = feelsLike1;
+  feelsLikeHere.innerHTML = hereFeelsLike;
   let humidHere = document.querySelector("#humid");
-  humidHere.innerHTML = humidity1;
+  humidHere.innerHTML = hereHumidity;
   let windHere = document.querySelector("#wind-spd");
-  windHere.innerHTML = windSpeed1;
+  windHere.innerHTML = hereWindSpeed;
   let iconHere = document.querySelector("#icon");
   iconHere.setAttribute(
     "src",
-    `http://openweathermap.org/img/wn/${icon1}@2x.png`
+    `http://openweathermap.org/img/wn/${hereIcon}@2x.png`
   );
   iconHere.setAttribute("alt", response.data.weather[0].icon);
 }
