@@ -58,42 +58,7 @@ function returnTime(time) {
   return formattedTime;
 }
 
-function displayDefaultWeather(response) {
-  let defaultCityName = response.data.name;
-  let defaultTemp = Math.round(response.data.main.temp);
-  let defaultMax = Math.round(response.data.main.temp_max);
-  let defaultMin = Math.round(response.data.main.temp_min);
-  let defaultFeelsLike = Math.round(response.data.main.feels_like);
-  let defaultHumidity = Math.round(response.data.main.humidity);
-  let defaultWindSpeed = Math.round(response.data.wind.speed);
-  let defaultDescrip = response.data.weather[0].description;
-  let defaultIcon = response.data.weather[0].icon;
-
-  let cityDefault = document.querySelector("#this-city");
-  cityDefault.innerHTML = defaultCityName;
-  let descriptionDefault = document.querySelector("#description");
-  descriptionDefault.innerHTML = defaultDescrip;
-  let temperatureDefault = document.querySelector("#temp-now");
-  temperatureDefault.innerHTML = defaultTemp;
-  let maxDefault = document.querySelector("#maximum");
-  maxDefault.innerHTML = defaultMax;
-  let minDefault = document.querySelector("#minimum");
-  minDefault.innerHTML = defaultMin;
-  let feelsLikeDefault = document.querySelector("#feels-like");
-  feelsLikeDefault.innerHTML = defaultFeelsLike;
-  let humidDefault = document.querySelector("#humid");
-  humidDefault.innerHTML = defaultHumidity;
-  let windDefault = document.querySelector("#wind-spd");
-  windDefault.innerHTML = defaultWindSpeed;
-  let iconDefault = document.querySelector("#icon");
-  iconDefault.setAttribute(
-    "src",
-    `http://openweathermap.org/img/wn/${defaultIcon}@2x.png`
-  );
-  iconDefault.setAttribute("alt", response.data.weather[0].icon);
-}
-
-function displaySearchWeather(response) {
+function displayWeather(response) {
   let cityName = response.data.name;
   let temp = Math.round(response.data.main.temp);
   let max = Math.round(response.data.main.temp_max);
@@ -104,72 +69,40 @@ function displaySearchWeather(response) {
   let descrip = response.data.weather[0].description;
   let icon = response.data.weather[0].icon;
 
-  let citySearch = document.querySelector("#this-city");
-  citySearch.innerHTML = cityName;
-  let descriptionSearch = document.querySelector("#description");
-  descriptionSearch.innerHTML = descrip;
-  let temperatureSearch = document.querySelector("#temp-now");
-  temperatureSearch.innerHTML = temp;
-  let maxSearch = document.querySelector("#maximum");
-  maxSearch.innerHTML = max;
-  let minSearch = document.querySelector("#minimum");
-  minSearch.innerHTML = min;
-  let feelsLikeSearch = document.querySelector("#feels-like");
-  feelsLikeSearch.innerHTML = feelsLike;
-  let humidSearch = document.querySelector("#humid");
-  humidSearch.innerHTML = humidity;
-  let windSearch = document.querySelector("#wind-spd");
-  windSearch.innerHTML = windSpeed;
-  let iconSearch = document.querySelector("#icon");
-  iconSearch.setAttribute(
+  let cityDisplay = document.querySelector("#this-city");
+  cityDisplay.innerHTML = cityName;
+  let descriptionDisplay = document.querySelector("#description");
+  descriptionDisplay.innerHTML = descrip;
+  let temperatureDisplay = document.querySelector("#temp-now");
+  temperatureDisplay.innerHTML = temp;
+  let maxDisplay = document.querySelector("#maximum");
+  maxDisplay.innerHTML = max;
+  let minDisplay = document.querySelector("#minimum");
+  minDisplay.innerHTML = min;
+  let feelsLikeDisplay = document.querySelector("#feels-like");
+  feelsLikeDisplay.innerHTML = feelsLike;
+  let humidDisplay = document.querySelector("#humid");
+  humidDisplay.innerHTML = humidity;
+  let windDisplay = document.querySelector("#wind-spd");
+  windDisplay.innerHTML = windSpeed;
+  let iconDisplay = document.querySelector("#icon");
+  iconDisplay.setAttribute(
     "src",
     `http://openweathermap.org/img/wn/${icon}@2x.png`
   );
-  iconSearch.setAttribute("alt", response.data.weather[0].icon);
+  iconDisplay.setAttribute("alt", response.data.weather[0].icon);
 }
 
-function searchLocation(event) {
-  event.preventDefault();
-  let cityInput = document.querySelector("#city-input");
-  let city = cityInput.value;
+function findCity(city) {
   let apiKey = "2851d65c3b3f1b70b16c7dcfea44e109";
   let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-  axios.get(url).then(displaySearchWeather);
+  axios.get(url).then(displayWeather);
 }
 
-function displayCurrentWeather(response) {
-  let hereCityName = response.data.name;
-  let hereTemp = Math.round(response.data.main.temp);
-  let hereMax = Math.round(response.data.main.temp_max);
-  let hereMin = Math.round(response.data.main.temp_min);
-  let hereFeelsLike = Math.round(response.data.main.feels_like);
-  let hereHumidity = Math.round(response.data.main.humidity);
-  let hereWindSpeed = Math.round(response.data.wind.speed);
-  let hereDescrip = response.data.weather[0].description;
-  let hereIcon = response.data.weather[0].icon;
-
-  let cityHere = document.querySelector("#this-city");
-  cityHere.innerHTML = hereCityName;
-  let description = document.querySelector("#description");
-  description.innerHTML = hereDescrip;
-  let temperatureHere = document.querySelector("#temp-now");
-  temperatureHere.innerHTML = hereTemp;
-  let maxHere = document.querySelector("#maximum");
-  maxHere.innerHTML = hereMax;
-  let minHere = document.querySelector("#minimum");
-  minHere.innerHTML = hereMin;
-  let feelsLikeHere = document.querySelector("#feels-like");
-  feelsLikeHere.innerHTML = hereFeelsLike;
-  let humidHere = document.querySelector("#humid");
-  humidHere.innerHTML = hereHumidity;
-  let windHere = document.querySelector("#wind-spd");
-  windHere.innerHTML = hereWindSpeed;
-  let iconHere = document.querySelector("#icon");
-  iconHere.setAttribute(
-    "src",
-    `http://openweathermap.org/img/wn/${hereIcon}@2x.png`
-  );
-  iconHere.setAttribute("alt", response.data.weather[0].icon);
+function searchSubmit(event) {
+  event.preventDefault();
+  let cityInput = document.querySelector("#city-input");
+  findCity(cityInput.value);
 }
 
 function logPosition(position) {
@@ -178,7 +111,7 @@ function logPosition(position) {
   let apiKey = "2851d65c3b3f1b70b16c7dcfea44e109";
   let units = "metric";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${units}`;
-  axios.get(apiUrl).then(displayCurrentWeather);
+  axios.get(apiUrl).then(displayWeather);
 }
 
 function getLocation(event) {
@@ -194,12 +127,10 @@ let currentTime = new Date();
 let time = document.querySelector("#time");
 time.innerHTML = returnTime(currentTime);
 
-let apiKey = "2851d65c3b3f1b70b16c7dcfea44e109";
-let url = `https://api.openweathermap.org/data/2.5/weather?q=York&appid=${apiKey}&units=metric`;
-axios.get(url).then(displayDefaultWeather);
+findCity("York");
 
 let input = document.querySelector("#city-search");
-input.addEventListener("submit", searchLocation);
+input.addEventListener("submit", searchSubmit);
 
 let current = document.querySelector("#current");
 current.addEventListener("click", getLocation);
