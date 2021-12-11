@@ -119,6 +119,14 @@ form {
   margin: 50px 0 0;
 }
 
+.active {
+  cursor: auto;
+}
+
+.active:hover {
+  color: #b9dbe6;
+}
+
 .fa-bolt {
   color: #d7df71;
 }
@@ -154,7 +162,6 @@ form {
 .searchbutton {
   display: block;
   text-align: right;
-
   background-color: #e7eaf6;
   border: solid #e7eaf6;
   font-family: "Raleway", sans-serif;

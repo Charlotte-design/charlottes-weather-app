@@ -126,6 +126,8 @@ function getLocation(event) {
 
 function displayFahrenheit(event) {
   event.preventDefault();
+  celsiusConverter.classList.remove("active");
+  fahrenheitConverter.classList.add("active");
   let temperature = document.querySelector("#temp-now");
   let fTemperature = (cTemp * 9) / 5 + 32;
   temperature.innerHTML = Math.round(fTemperature);
@@ -142,6 +144,8 @@ function displayFahrenheit(event) {
 
 function displayCelsius(event) {
   event.preventDefault();
+  fahrenheitConverter.classList.remove("active");
+  celsiusConverter.classList.add("active");
   let temperature = document.querySelector("#temp-now");
   let cTemperature = cTemp;
   temperature.innerHTML = Math.round(cTemperature);
