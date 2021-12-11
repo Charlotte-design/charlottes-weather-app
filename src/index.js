@@ -69,6 +69,11 @@ function displayWeather(response) {
   let descrip = response.data.weather[0].description;
   let icon = response.data.weather[0].icon;
 
+  cTemp = (response.data.main.temp);
+  cTempMax = (response.data.main.temp_max);
+  cTempMin = (response.data.main.temp_min);
+  cTempFeelsLike = (response.data.main.feels_like);
+
   let cityDisplay = document.querySelector("#this-city");
   cityDisplay.innerHTML = cityName;
   let descriptionDisplay = document.querySelector("#description");
@@ -119,6 +124,43 @@ function getLocation(event) {
   navigator.geolocation.getCurrentPosition(logPosition);
 }
 
+function displayFahrenheit(event) {
+  event.preventDefault();
+  let temperature = document.querySelector("#temp-now");
+  let fTemperature = (cTemp * 9) / 5 + 32;
+  temperature.innerHTML = Math.round(fTemperature);
+  let maximum = document.querySelector("#maximum");
+  let fTemperatureMax = (cTempMax * 9) / 5 + 32;
+  maximum.innerHTML = Math.round(fTemperatureMax);
+  let minimum = document.querySelector("#minimum");
+  let fTemperatureMin = (cTempMin * 9) / 5 + 32;
+  minimum.innerHTML = Math.round(fTemperatureMin);
+  let feelsLike = document.querySelector("#feels-like");
+  let fTemperatureFeelsLike = (cTempFeelsLike * 9) / 5 + 32;
+  feelsLike.innerHTML = Math.round(fTemperatureFeelsLike);
+}
+
+function displayCelsius(event) {
+  event.preventDefault();
+  let temperature = document.querySelector("#temp-now");
+  let cTemperature = cTemp;
+  temperature.innerHTML = Math.round(cTemperature);
+  let maximum = document.querySelector("#maximum");
+  let cTemperatureMax = cTempMax;
+  maximum.innerHTML = Math.round(cTemperatureMax);
+  let minimum = document.querySelector("#minimum");
+  let cTemperatureMin = cTempMin;
+  minimum.innerHTML = Math.round(cTemperatureMin);
+  let feelsLike = document.querySelector("#feels-like");
+  let cTemperatureFeelsLike = cTempFeelsLike;
+  feelsLike.innerHTML = Math.round(cTemperatureFeelsLike);
+}
+
+let cTemp = null;
+let cTempMax = null;
+let cTempMin = null;
+let cTempFeelsLike = null;
+
 let currentDate = new Date();
 let date = document.querySelector("#date");
 date.innerHTML = returnDate(currentDate);
@@ -127,10 +169,16 @@ let currentTime = new Date();
 let time = document.querySelector("#time");
 time.innerHTML = returnTime(currentTime);
 
-findCity("York");
-
 let input = document.querySelector("#city-search");
 input.addEventListener("submit", searchSubmit);
 
 let current = document.querySelector("#current");
 current.addEventListener("click", getLocation);
+
+let fahrenheitConverter = document.querySelector("#fahrenheit");
+fahrenheitConverter.addEventListener("click", displayFahrenheit);
+
+let celsiusConverter = document.querySelector("#celsius");
+celsiusConverter.addEventListener("click", displayCelsius);
+
+findCity("York");
