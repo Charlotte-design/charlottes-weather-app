@@ -185,4 +185,4 @@ fahrenheitConverter.addEventListener("click", displayFahrenheit);
 let celsiusConverter = document.querySelector("#celsius");
 celsiusConverter.addEventListener("click", displayCelsius);
 
-findCity("York");
+findCity("York, UK");
