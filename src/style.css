@@ -27,16 +27,12 @@ form {
 }
 
 .toprow {
-  margin: 80px 20px;
+  margin: 80px 0px;
   text-align: center;
 }
 
-.first,
-.second,
-.third,
-.fourth,
-.fifth {
-  padding: 20px;
+.forecast {
+  padding: 20px 0px;
   border: solid #5f818a;
   border-radius: 30% 40%;
   margin: 5px;
@@ -46,12 +42,17 @@ form {
   color: #b9dbe6;
 }
 
-.fivedaysahead span {
+.forecast-day {
   font-size: 20px;
 }
 
-.fivedaysahead .fas {
-  font-size: 40px;
+.forecast-icon {
+  margin: -10px;
+  padding: 0;
+}
+
+.forecast-min {
+  opacity: 0.5;
 }
 
 .description {
@@ -127,29 +128,10 @@ form {
   color: #b9dbe6;
 }
 
-.fa-bolt {
-  color: #d7df71;
-}
-
-.fa-cloud-rain {
-  background: -webkit-linear-gradient(#9ba6a5, #1c44ac);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.fa-cloud-sun {
-  background: -webkit-linear-gradient(yellow, #d9dad7);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.fa-sun {
-  background: -webkit-linear-gradient(#f89d13, #ffdd00);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+.city-search {
+  position: relative;
+  bottom: 150px;
+  left: 100px;
 }
 
 .searchfield {
@@ -168,6 +150,8 @@ form {
 }
 
 .currentbutton {
+  position: relative;
+  bottom: 150px;
   display: block;
   margin: 0 auto;
   background-color: #e7eaf6;

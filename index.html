@@ -21,43 +21,44 @@
   <body>
     <div class="container">
       <div class="body">
+      <div class="app">
       <div class="row toprow">
           <div class="col-3">
             <div class="row fivedaysahead">
-                <div class="col-12 first">
-              <span>Tomorrow</span>
+                <div class="col-12 forecast">
+              <span class="forecast-day">Tomorrow</span>
           </br>
-          Forecast coming soon... 
+          <span class="forecast-max">Max</span>&#176;/<span class="forecast-min">Min<span>&#176;</span></span>
         </br>
-          <i class="fas fa-bolt"></i>
+          <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="Clear" width="80px" class="forecast-icon" id="forecast-icon"/>
           </div>
-          <div class="col-12 second">
-              <span>Day 2</span>
+          <div class="col-12 forecast">
+              <span class="forecast-day">Day 2</span>
           </br>
-          &#176;/&#176;
+          <span class="forecast-max">Max</span>&#176;/<span class="forecast-min">Min<span>&#176;</span></span>
         </br>
-        <i class="fas fa-cloud-rain"></i>
+        <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="Clear" width="80px" class="forecast-icon" id="forecast-icon"/>
           </div>
-          <div class="col-12 third">
-              <span>Day 3</span>
+          <div class="col-12 forecast">
+              <span class="forecast-day">Day 3</span>
           </br>
-          &#176;/&#176;
+         <span class="forecast-max">Max</span>&#176;/<span class="forecast-min">Min<span>&#176;</span></span>
           </br>
-          <i class="fas fa-cloud-sun"></i>
+          <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="Clear" width="80px" class="forecast-icon" id="forecast-icon"/>
           </div>
-          <div class="col-12 fourth">
-              <span>Day 4</span>
+          <div class="col-12 forecast">
+              <span class="forecast-day">Day 4</span>
           </br>
-          &#176;/&#176;
+          <span class="forecast-max">Max</span>&#176;/<span class="forecast-min">Min<span>&#176;</span></span>
           </br>
-          <i class="fas fa-cloud-sun"></i>
+          <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="Clear" width="80px" class="forecast-icon" id="forecast-icon"/>
           </div>
-          <div class="col-12 fifth">
-              <span>Day 5</span>
+          <div class="col-12 forecast">
+              <span class="forecast-day">Day 5</span>
           </br>
-          &#176;/&#176;
+          <span class="forecast-max">Max</span>&#176;/<span class="forecast-min">Min<span>&#176;</span></span>
         </br>
-        <i class="fas fa-sun"></i>
+        <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="Clear" width="80px" class="forecast-icon" id="forecast-icon"/>
           </div>
           </div>
       </div>
@@ -77,10 +78,10 @@
                 <a href="#" class="fahrenheit" id="fahrenheit">&#176;F</a>
               </span>
             </span>
-            <div class="maximum">Max <span id="maximum"></span><span id="degree2">&#176;</span></div>
-            <div class="minimum">Min <span id="minimum"></span><span id="degree3">&#176;</span></div>
+            <div class="maximum">Max <span id="maximum"></span><span>&#176;</span></div>
+            <div class="minimum">Min <span id="minimum"></span><span>&#176;</span></div>
           </h2>
-          <p class="todaydescription2">Feels like <span id="feels-like"></span><span id="degree4">&#176;</span> 
+          <p class="todaydescription2">Feels like <span id="feels-like"></span><span>&#176;</span> 
           </br>
           Humidity <span id="humid"></span><span id="percent">%</span>
         </br>
@@ -89,7 +90,7 @@
         </div>
       </div>
       </div>
-      <form id="city-search">
+      <form class="city-search" id="city-search">
           <div class="row">
             <div class="col-9"></div>
               <div class="col-3">
@@ -108,6 +109,7 @@
     </br>
     <button type="button" class="btn btn-light currentbutton" id="current">Current location</button>
   </br>
+  </div>
   </div>
   <p> <a href="https://github.com/Charlotte-design/charlottes-weather-app" target="_blank" class="source">Open Source Code</a> by Charlotte Nettleship Phillips</p>
     </div>
