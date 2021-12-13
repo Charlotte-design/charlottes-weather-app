@@ -58,6 +58,37 @@ function returnTime(time) {
   return formattedTime;
 }
 
+function displayForecast(response) {
+  let forecastGrid = document.querySelector("#five-day-forecast");
+  let days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
+  let fiveDayForecastHTML = `<div class="row">`;
+  days.forEach(function (day) {
+    fiveDayForecastHTML =
+      fiveDayForecastHTML +
+      `
+    <div class="col-12 forecast">
+              <span class="forecast-day">${day}</span>
+          </br>
+          <span class="forecast-max">Max</span>&#176;/<span class="forecast-min">Min<span>&#176;</span></span>
+        </br>
+          <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="Clear" width="80px" class="forecast-icon" id="forecast-icon"/>
+          </div>
+          `;
+  });
+
+  fiveDayForecastHTML = fiveDayForecastHTML + `</div>`;
+  forecastGrid.innerHTML = fiveDayForecastHTML;
+  console.log(response.data.daily);
+}
+
+function getCoords(coordinates) {
+  let apiKey = "2851d65c3b3f1b70b16c7dcfea44e109";
+  let latitude = coordinates.lat;
+  let longitude = coordinates.lon;
+  let url = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
+  axios.get(url).then(displayForecast);
+}
+
 function displayWeather(response) {
   let cityName = response.data.name;
   let temp = Math.round(response.data.main.temp);
@@ -96,6 +127,8 @@ function displayWeather(response) {
     `http://openweathermap.org/img/wn/${icon}@2x.png`
   );
   iconDisplay.setAttribute("alt", response.data.weather[0].icon);
+
+  getCoords(response.data.coord);
 }
 
 function findCity(city) {
@@ -160,27 +193,6 @@ function displayCelsius(event) {
   feelsLike.innerHTML = Math.round(cTemperatureFeelsLike);
 }
 
-function displayForecast() {
-  let forecastGrid = document.querySelector("#five-day-forecast");
-
-  let days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
-  let fiveDayForecastHTML = `<div class="row">`;
-  days.forEach(function (day) {
-    fiveDayForecastHTML = fiveDayForecastHTML + `
-    <div class="col-12 forecast">
-              <span class="forecast-day">${day}</span>
-          </br>
-          <span class="forecast-max">Max</span>&#176;/<span class="forecast-min">Min<span>&#176;</span></span>
-        </br>
-          <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="Clear" width="80px" class="forecast-icon" id="forecast-icon"/>
-          </div>
-          ` ;
-        });
-
-    fiveDayForecastHTML = fiveDayForecastHTML + `</div>`;
-    forecastGrid.innerHTML = fiveDayForecastHTML;
-}
-
 let cTemp = null;
 let cTempMax = null;
 let cTempMin = null;
@@ -207,4 +219,3 @@ let celsiusConverter = document.querySelector("#celsius");
 celsiusConverter.addEventListener("click", displayCelsius);
 
 findCity("York, UK");
-displayForecast();
