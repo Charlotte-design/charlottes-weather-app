@@ -160,6 +160,27 @@ function displayCelsius(event) {
   feelsLike.innerHTML = Math.round(cTemperatureFeelsLike);
 }
 
+function displayForecast() {
+  let forecastGrid = document.querySelector("#five-day-forecast");
+
+  let days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
+  let fiveDayForecastHTML = `<div class="row">`;
+  days.forEach(function (day) {
+    fiveDayForecastHTML = fiveDayForecastHTML + `
+    <div class="col-12 forecast">
+              <span class="forecast-day">${day}</span>
+          </br>
+          <span class="forecast-max">Max</span>&#176;/<span class="forecast-min">Min<span>&#176;</span></span>
+        </br>
+          <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="Clear" width="80px" class="forecast-icon" id="forecast-icon"/>
+          </div>
+          ` ;
+        });
+
+    fiveDayForecastHTML = fiveDayForecastHTML + `</div>`;
+    forecastGrid.innerHTML = fiveDayForecastHTML;
+}
+
 let cTemp = null;
 let cTempMax = null;
 let cTempMin = null;
@@ -186,3 +207,4 @@ let celsiusConverter = document.querySelector("#celsius");
 celsiusConverter.addEventListener("click", displayCelsius);
 
 findCity("York, UK");
+displayForecast();
