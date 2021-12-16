@@ -90,7 +90,6 @@ function displayForecast(response) {
 
   fiveDayForecastHTML = fiveDayForecastHTML + `</div>`;
   forecastGrid.innerHTML = fiveDayForecastHTML;
-  console.log(response.data.daily);
 }
 
 function getCoords(coordinates) {
