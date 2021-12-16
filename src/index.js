@@ -58,22 +58,34 @@ function returnTime(time) {
   return formattedTime;
 }
 
+function formatWeekday(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let weekday = date.getDay();
+  let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+  return days[weekday];
+}
+
 function displayForecast(response) {
   let forecastGrid = document.querySelector("#five-day-forecast");
-  let days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
+  let forecast = response.data.daily; 
   let fiveDayForecastHTML = `<div class="row">`;
-  days.forEach(function (day) {
+  forecast.forEach(function (day, index) {
+    if(index < 6 && index > 0) {
     fiveDayForecastHTML =
       fiveDayForecastHTML +
       `
     <div class="col-12 forecast">
-              <span class="forecast-day">${day}</span>
+              <span class="forecast-day">${formatWeekday(day.dt)}</span>
           </br>
-          <span class="forecast-max">Max</span>&#176;/<span class="forecast-min">Min<span>&#176;</span></span>
+          <span class="forecast-max">${Math.round(day.temp.max)}</span>&#176;/<span class="forecast-min">${Math.round(day.temp.min)}<span>&#176;</span></span>
         </br>
-          <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="Clear" width="80px" class="forecast-icon" id="forecast-icon"/>
+          <img src="https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png" alt="Clear" width="60px" class="forecast-icon" id="forecast-icon"/>
+          </br>
+          <span class="forecast-description">${day.weather[0].description}</span>
           </div>
           `;
+    }
   });
 
   fiveDayForecastHTML = fiveDayForecastHTML + `</div>`;
@@ -124,7 +136,7 @@ function displayWeather(response) {
   let iconDisplay = document.querySelector("#icon");
   iconDisplay.setAttribute(
     "src",
-    `http://openweathermap.org/img/wn/${icon}@2x.png`
+    `https://openweathermap.org/img/wn/${icon}@2x.png`
   );
   iconDisplay.setAttribute("alt", response.data.weather[0].icon);
 

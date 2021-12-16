@@ -55,6 +55,10 @@ form {
   opacity: 0.5;
 }
 
+.forecast-description {
+  text-transform: capitalize;
+}
+
 .description {
   text-transform: capitalize;
 }
