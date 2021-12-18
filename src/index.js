@@ -66,29 +66,68 @@ function formatWeekday(timestamp) {
   return days[weekday];
 }
 
-function displayForecast(response) {
+function displayFahrenheitForecast(response) {
   let forecastGrid = document.querySelector("#five-day-forecast");
-  let forecast = response.data.daily; 
+  let forecast = response.data.daily;
   let fiveDayForecastHTML = `<div class="row">`;
   forecast.forEach(function (day, index) {
-    if(index < 6 && index > 0) {
-    fiveDayForecastHTML =
-      fiveDayForecastHTML +
-      `
+    if (index < 6 && index > 0) {
+      fiveDayForecastHTML =
+        fiveDayForecastHTML +
+        `
     <div class="col-12 forecast">
               <span class="forecast-day">${formatWeekday(day.dt)}</span>
           </br>
-          <span class="forecast-max" id="forecast-max">${Math.round(day.temp.max)}</span>&#176;/<span class="forecast-min" id="forecast-min">${Math.round(day.temp.min)}<span>&#176;</span></span>
+          <span class="forecast-max" id="forecast-max">${Math.round(
+            day.temp.max
+          )}</span>&#176;/<span class="forecast-min" id="forecast-min">${Math.round(
+          day.temp.min
+        )}<span>&#176;</span></span>
         </br>
-          <img src="https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png" alt="Clear" width="60px" class="forecast-icon" id="forecast-icon"/>
+          <img src="https://openweathermap.org/img/wn/${
+            day.weather[0].icon
+          }@2x.png" alt="Clear" width="60px" class="forecast-icon" id="forecast-icon"/>
           </br>
-          <span class="forecast-description">${day.weather[0].description}</span>
+          <span class="forecast-description">${
+            day.weather[0].description
+          }</span>
           </div>
           `;
     }
+  });
 
-    cForecastTempMax = (day.temp.max);
-    cForecastTempMin = (day.temp.min);
+  fiveDayForecastHTML = fiveDayForecastHTML + `</div>`;
+  forecastGrid.innerHTML = fiveDayForecastHTML;
+}
+
+function displayForecast(response) {
+  let forecastGrid = document.querySelector("#five-day-forecast");
+  let forecast = response.data.daily;
+  let fiveDayForecastHTML = `<div class="row">`;
+  forecast.forEach(function (day, index) {
+    if (index < 6 && index > 0) {
+      fiveDayForecastHTML =
+        fiveDayForecastHTML +
+        `
+    <div class="col-12 forecast">
+              <span class="forecast-day">${formatWeekday(day.dt)}</span>
+          </br>
+          <span class="forecast-max" id="forecast-max">${Math.round(
+            day.temp.max
+          )}</span>&#176;/<span class="forecast-min" id="forecast-min">${Math.round(
+          day.temp.min
+        )}<span>&#176;</span></span>
+        </br>
+          <img src="https://openweathermap.org/img/wn/${
+            day.weather[0].icon
+          }@2x.png" alt="Clear" width="60px" class="forecast-icon" id="forecast-icon"/>
+          </br>
+          <span class="forecast-description">${
+            day.weather[0].description
+          }</span>
+          </div>
+          `;
+    }
   });
 
   fiveDayForecastHTML = fiveDayForecastHTML + `</div>`;
@@ -101,6 +140,14 @@ function getCoords(coordinates) {
   let longitude = coordinates.lon;
   let url = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
   axios.get(url).then(displayForecast);
+}
+
+function storeCoordsImperial(coordinates) {
+  let apiKey = "2851d65c3b3f1b70b16c7dcfea44e109";
+  let latitude = coordinates.lat;
+  let longitude = coordinates.lon;
+  let url = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=imperial`;
+  axios.get(url).then(displayFahrenheitForecast);
 }
 
 function displayWeather(response) {
@@ -142,6 +189,8 @@ function displayWeather(response) {
   );
   iconDisplay.setAttribute("alt", response.data.weather[0].icon);
 
+  storeCoordsImperial(response.data.coord);
+
   getCoords(response.data.coord);
 }
 
@@ -176,7 +225,7 @@ function displayFahrenheit(event) {
   celsiusConverter.classList.remove("active");
   fahrenheitConverter.classList.add("active");
   let temperature = document.querySelector("#temp-now");
-  let fTemperature = (cTemp * 9) / 5 + 32;
+  let fTemperature = (cTemp * 9) / 5 + 32; 
   temperature.innerHTML = Math.round(fTemperature);
   let maximum = document.querySelector("#maximum");
   let fTemperatureMax = (cTempMax * 9) / 5 + 32;
@@ -187,12 +236,8 @@ function displayFahrenheit(event) {
   let feelsLike = document.querySelector("#feels-like");
   let fTemperatureFeelsLike = (cTempFeelsLike * 9) / 5 + 32;
   feelsLike.innerHTML = Math.round(fTemperatureFeelsLike);
-  let maxForecast = document.querySelector("span.forecast-max");
-  let fMaxForecast = (cForecastTempMax * 9) / 5 + 32;
-  maxForecast.innerHTML = Math.round(fMaxForecast);
-  let minForecast = document.querySelector("span.forecast-min");
-  let fMinForecast = (cForecastTempMin * 9) / 5 + 32;
-  minForecast.innerHTML = Math.round(fMinForecast);
+
+  storeCoordsImperial();
 }
 
 function displayCelsius(event) {
@@ -211,20 +256,12 @@ function displayCelsius(event) {
   let feelsLike = document.querySelector("#feels-like");
   let cTemperatureFeelsLike = cTempFeelsLike;
   feelsLike.innerHTML = Math.round(cTemperatureFeelsLike);
-  let maxForecast = document.querySelector("span.forecast-max");
-  let cMaxForecast = cForecastTempMax;
-  maxForecast.innerHTML = Math.round(cMaxForecast);
-  let minForecast = document.querySelector("span.forecast-min");
-  let cMinForecast = cForecastTempMin;
-  minForecast.innerHTML = Math.round(cMinForecast);
 }
 
 let cTemp = null;
 let cTempMax = null;
 let cTempMin = null;
 let cTempFeelsLike = null;
-let cForecastTempMax = null;
-let cForecastTempMin = null;
 
 let currentDate = new Date();
 let date = document.querySelector("#date");
