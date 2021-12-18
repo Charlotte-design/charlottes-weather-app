@@ -86,6 +86,9 @@ function displayForecast(response) {
           </div>
           `;
     }
+
+    cForecastTempMax = (day.temp.max);
+    cForecastTempMin = (day.temp.min);
   });
 
   fiveDayForecastHTML = fiveDayForecastHTML + `</div>`;
@@ -187,6 +190,9 @@ function displayFahrenheit(event) {
   let maxForecast = document.querySelector("span.forecast-max");
   let fMaxForecast = (cForecastTempMax * 9) / 5 + 32;
   maxForecast.innerHTML = Math.round(fMaxForecast);
+  let minForecast = document.querySelector("span.forecast-min");
+  let fMinForecast = (cForecastTempMin * 9) / 5 + 32;
+  minForecast.innerHTML = Math.round(fMinForecast);
 }
 
 function displayCelsius(event) {
@@ -205,6 +211,12 @@ function displayCelsius(event) {
   let feelsLike = document.querySelector("#feels-like");
   let cTemperatureFeelsLike = cTempFeelsLike;
   feelsLike.innerHTML = Math.round(cTemperatureFeelsLike);
+  let maxForecast = document.querySelector("span.forecast-max");
+  let cMaxForecast = cForecastTempMax;
+  maxForecast.innerHTML = Math.round(cMaxForecast);
+  let minForecast = document.querySelector("span.forecast-min");
+  let cMinForecast = cForecastTempMin;
+  minForecast.innerHTML = Math.round(cMinForecast);
 }
 
 let cTemp = null;
