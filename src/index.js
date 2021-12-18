@@ -78,7 +78,7 @@ function displayForecast(response) {
     <div class="col-12 forecast">
               <span class="forecast-day">${formatWeekday(day.dt)}</span>
           </br>
-          <span class="forecast-max">${Math.round(day.temp.max)}</span>&#176;/<span class="forecast-min">${Math.round(day.temp.min)}<span>&#176;</span></span>
+          <span class="forecast-max" id="forecast-max">${Math.round(day.temp.max)}</span>&#176;/<span class="forecast-min" id="forecast-min">${Math.round(day.temp.min)}<span>&#176;</span></span>
         </br>
           <img src="https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png" alt="Clear" width="60px" class="forecast-icon" id="forecast-icon"/>
           </br>
@@ -184,6 +184,9 @@ function displayFahrenheit(event) {
   let feelsLike = document.querySelector("#feels-like");
   let fTemperatureFeelsLike = (cTempFeelsLike * 9) / 5 + 32;
   feelsLike.innerHTML = Math.round(fTemperatureFeelsLike);
+  let maxForecast = document.querySelector("span.forecast-max");
+  let fMaxForecast = (cForecastTempMax * 9) / 5 + 32;
+  maxForecast.innerHTML = Math.round(fMaxForecast);
 }
 
 function displayCelsius(event) {
@@ -208,6 +211,8 @@ let cTemp = null;
 let cTempMax = null;
 let cTempMin = null;
 let cTempFeelsLike = null;
+let cForecastTempMax = null;
+let cForecastTempMin = null;
 
 let currentDate = new Date();
 let date = document.querySelector("#date");
