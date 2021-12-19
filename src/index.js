@@ -138,16 +138,9 @@ function getCoords(coordinates) {
   let apiKey = "2851d65c3b3f1b70b16c7dcfea44e109";
   let latitude = coordinates.lat;
   let longitude = coordinates.lon;
-  let url = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
+  currentCoordinates = coordinates;
+  let url = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${units}`;
   axios.get(url).then(displayForecast);
-}
-
-function storeCoordsImperial(coordinates) {
-  let apiKey = "2851d65c3b3f1b70b16c7dcfea44e109";
-  let latitude = coordinates.lat;
-  let longitude = coordinates.lon;
-  let url = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=imperial`;
-  axios.get(url).then(displayFahrenheitForecast);
 }
 
 function displayWeather(response) {
@@ -188,8 +181,6 @@ function displayWeather(response) {
     `https://openweathermap.org/img/wn/${icon}@2x.png`
   );
   iconDisplay.setAttribute("alt", response.data.weather[0].icon);
-
-  storeCoordsImperial(response.data.coord);
 
   getCoords(response.data.coord);
 }
@@ -236,8 +227,9 @@ function displayFahrenheit(event) {
   let feelsLike = document.querySelector("#feels-like");
   let fTemperatureFeelsLike = (cTempFeelsLike * 9) / 5 + 32;
   feelsLike.innerHTML = Math.round(fTemperatureFeelsLike);
-
-  storeCoordsImperial();
+  units = "imperial";
+  
+  getCoords(currentCoordinates);
 }
 
 function displayCelsius(event) {
@@ -256,12 +248,17 @@ function displayCelsius(event) {
   let feelsLike = document.querySelector("#feels-like");
   let cTemperatureFeelsLike = cTempFeelsLike;
   feelsLike.innerHTML = Math.round(cTemperatureFeelsLike);
+  units = "metric";
+
+  getCoords(currentCoordinates);
 }
 
 let cTemp = null;
 let cTempMax = null;
 let cTempMin = null;
 let cTempFeelsLike = null;
+let units = "metric";
+let currentCoordinates = null;
 
 let currentDate = new Date();
 let date = document.querySelector("#date");
